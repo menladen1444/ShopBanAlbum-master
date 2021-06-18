@@ -1,0 +1,54 @@
+﻿@model ShopBanAlbum.Models.YKienKhachHang
+@{
+    ViewBag.Title = "LIÊN HỆ";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container" style="background-color: rgba(0, 0, 0, 0.3);padding-bottom:10px;margin-bottom:20px;border-radius:20px">
+    <div class="row" style="padding:30px 0;background-color: rgba(0, 0, 0, 0.3);border-radius:20px">
+        <div class="col-lg-6">
+            <h1 style="color:#08232c;font-size:35px;font-family: 'Coiny', cursive;margin-bottom:20px">LIÊN HỆ VỚI CHÚNG TÔI</h1>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div style="margin-bottom:22px">
+                        @Html.EditorFor(model => model.TenKhachHang, new { htmlAttributes = new { @class = "lienheinput form-control", PlaceHolder = "Nhập tên", Value = @Session["userName"] } })
+                        @Html.ValidationMessageFor(model => model.TenKhachHang, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div style="margin-bottom:22px">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "lienheinput form-control", PlaceHolder = "Nhập Email", Value = Session["email"] } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div style="margin-bottom:20px">
+                        @Html.TextAreaFor(model => model.NoiDung, new { @style = "height:150px", @class = "noidung form-control", spellcheck = "false", PlaceHolder = "Nội dung" })
+                        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                    </div>
+                    <div style="text-align:end">
+                        <input class="submit btn btn-primary" type="submit" value="Gửi" />
+                    </div>
+                </div>
+            }
+        </div>
+        <div align="left" class="col-lg-6" style="font-family: 'Coiny', cursive;padding-left:15px">
+            <h1 style="color:#08232c;font-size:35px;margin-bottom:15px">THÔNG TIN LIÊN HỆ</h1>
+            <p style="font-size:21px;margin:0;color:#f1cd70;margin-bottom:20px">
+                Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+            </p>
+            <i class="fas fa-envelope" style="color:#e9ba3f;font-size:40px"></i>
+            <p style="font-size:21px;margin:0;color:#f1cd70;margin-bottom:20px">Mail me<br>thealbumshop@gmail.com</p>
+            <i class="fas fa-phone-alt" style="color:#e9ba3f;font-size:40px"></i>
+            <p style="font-size:21px;margin:0;color:#f1cd70">Call me<br>0121212121</p>
+        </div>
+    </div>
+    <div style="font-family: 'Coiny', cursive;margin-top:50px">
+        <h3 style="font-size: 35px; margin:15px 0px;color:#0e3542">VỊ TRÍ CỦA SHOP</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15678.012851142626!2d106.66067317461052!3d10.772717827183675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752edb9df4f77b%3A0xbcfc6ac4989ae6d!2zVHJ1bmcgdMOibSBOZ2_huqFpIG5n4buvIC0gVGluIGjhu41jIFRyxrDhu51uZyDEkGFpIGjhu41jIE5nb-G6oWkgbmfhu68gLSBUaW4gaOG7jWMgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5o!5e0!3m2!1svi!2s!4v1605585821502!5m2!1svi!2s" height="600" frameborder="0" style="border:0;width:100%;border-radius:10px;opacity:0.9" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+</div>
+

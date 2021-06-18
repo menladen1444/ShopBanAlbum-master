@@ -1,0 +1,150 @@
+﻿@model ShopBanAlbum.Models.DonHang
+
+@{
+    ViewBag.Title = "CHI TIẾT ĐƠN HÀNG";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="container mt-3">
+    <h2 style="color:#000000;margin:20px 0;margin-left:10px;font-family: 'Coiny', cursive">CHI TIẾT ĐƠN HÀNG</h2>
+    <div class="row mr-3" style="background-color:rgba(0, 0, 0, 0.6);border-radius:30px;font-family: 'Coiny', cursive;padding:50px 40px">
+        <div class="col-lg-6" style="color:lightgray">
+            <h3 style="margin-top:0px;margin-bottom:20px;color:gray">Thông tin giao hàng</h3>
+            <h3>@Model.TenKhachHang</h3>
+            <h4><i class="fas fa-phone-volume" style="color:lightgreen;margin-right:5px"></i> @Model.SoDienThoai</h4>
+            <h4><i class="fas fa-map-pin" style="color:lightgreen;margin-right:10px"></i>@Model.DiaChi</h4>
+            @if (Model.TrangThaiDonHangID == 1)
+            {
+                <h3 style="color:lightgreen"><i class="fas fa-hourglass-start" style="margin-right:10px"></i>@Model.TrangThaiDonHang.TenTrangThaiDonHang</h3>
+            }
+            else if (Model.TrangThaiDonHangID == 2)
+            {
+                <h3 style="color:lightgreen"><i class="fas fa-box-open" style="margin-right:10px"></i>@Model.TrangThaiDonHang.TenTrangThaiDonHang</h3>
+            }
+            else if (Model.TrangThaiDonHangID == 3)
+            {
+                <h3 style="color:lightgreen"><i class="fas fa-truck" style="margin-right:10px"></i>@Model.TrangThaiDonHang.TenTrangThaiDonHang</h3>
+            }
+            else if (Model.TrangThaiDonHangID == 4)
+            {
+                <h3 style="color:lightgreen"><i class="fas fa-check-double" style="margin-right:10px"></i>@Model.TrangThaiDonHang.TenTrangThaiDonHang</h3>
+            }
+            else if (Model.TrangThaiDonHangID == 6)
+            {
+                <h3 style="color:red"><i class="far fa-times-circle" style="margin-right:10px"></i>Đơn hàng đã hủy</h3>
+            }
+            else
+            {
+                <h3 style="color:lightgreen"><i class="fas fa-bomb" style="margin-right:10px"></i>@Model.TrangThaiDonHang.TenTrangThaiDonHang</h3>
+            }
+            <i class="fas fa-long-arrow-alt-left" style="color:#adcbee;margin-right:10px;font-size:10px"></i><button class="gohome" style="margin-left:0;padding-left:0" onclick="window.location.href='@Url.Action("DonHang", "KhachHangs",new { id=Model.KhachHangID})'">Trở về trang đơn hàng</button>
+        </div>
+        <div class="col-lg-6 border">
+            <h3 style="margin-top:0px;margin-bottom:20px;color:grey">Đơn hàng</h3>
+            <hr />
+            <div class="row">
+                <div class="col-lg-8">
+                    <h4 style="color:lightgray">Sản phẩm</h4>
+                </div>
+                <div class="col-lg-4" align="right">
+                    <h4 style="color:lightgray">Đơn giá</h4>
+                </div>
+                @foreach (var item in Model.ChiTietDonHangs)
+                {
+                    double total = Convert.ToDouble(item.Album.GiaBan * item.SoLuong);
+                    <div class="row" style="padding:5px 15px">
+                        <div class="col-lg-1">
+                            <img alt="image" src="~/Contents/images/album/@item.Album.HinhAnh" style="width:35px;border-radius:5px;float:left">
+                        </div>
+                        <div class="col-lg-7">
+                            <p style="color:#4db0de;padding-bottom:0;margin-bottom:0">@item.Album.TenAlbum <span class="font-weight-bold">x @item.SoLuong</span></p>
+                            @if (item.DiemDanhGias.Count == 1)
+                            {
+                                <span style="color:#b9f5b9;font-size:13px;font-weight:100">Bạn đã đánh giá sản phẩm<i class="fas fa-check-double" style="margin-left:5px"></i></span>
+                            }
+                        </div>
+                        <div class="col-lg-4" align="right">
+                            <p style="color:#eff293">@total.ToString("N0")đ</p>
+                        </div>
+
+                        @if (item.DiemDanhGias.Count == 0 && item.DonHang.TrangThaiDonHangID == 4)
+                        {
+                            <div class="col-lg-12 col-xs-12" style="padding-left:0">
+                                <section>
+                                    <div class="rt-container">
+                                        <div class="col-rt-12">
+                                            <div class="cont">
+                                                <div class="stars row" style="padding-bottom:0">
+                                                    @using (Html.BeginForm("LuuDiemDanhGia", "KhachHangs", FormMethod.Get))
+                                                    {
+                                                        <div class="col-lg-8" style="padding:0">
+
+                                                            <input class="star star-5" id="star-5-2" type="radio" value="5" name="star" />
+                                                            <label class="star star-5" for="star-5-2" id="star1"></label>
+                                                            <input class="star star-4" id="star-4-2" type="radio" value="4" name="star" />
+                                                            <label class="star star-4" for="star-4-2" id="star2"></label>
+                                                            <input class="star star-3" id="star-3-2" type="radio" value="3" name="star" />
+                                                            <label class="star star-3" for="star-3-2" id="star3"></label>
+                                                            <input class="star star-2" id="star-2-2" type="radio" value="2" name="star" />
+                                                            <label class="star star-2" for="star-2-2" id="star4"></label>
+                                                            <input class="star star-1" id="star-1-2" type="radio" value="1" name="star" />
+                                                            <label class="star star-1" for="star-1-2" id="star5"></label>
+
+                                                            <input type="hidden" name="diem" id="diem" value="0" />
+                                                            <input type="hidden" name="id" id="id" value="@item.ChiTietDonHangID" />
+
+                                                        </div>
+                                                        <div class="col-lg-4" style="padding-top:14px">
+                                                            <input class="LuuDanhGia" type="submit" value="Lưu đánh giá" />
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="row" style="background-color:rgba(0, 0, 0, 0.2);padding:10px 0;margin-top:20px;border-radius:10px">
+                <div class="col-lg-8">
+                    <h4 style="color:grey">Tổng cộng đơn hàng</h4>
+                </div>
+                <div class="col-4" align="right" style="padding-right:20px">
+                    <h4 style="color:#eef456">@Model.TongTien.ToString("N0")đ</h4>
+                </div>
+            </div>
+            @if (Model.TrangThaiDonHangID == 1)
+            {
+                <div class="col-lg-12" align="right" style="padding-right:0;margin:0">
+                    <button class="huy" onclick="window.location.href='@Url.Action("HuyDonHang", "KhachHangs",new { id = Model.DonHangID})'">Hủy đơn hàng</button>
+                </div>
+            }
+            else if (Model.TrangThaiDonHangID == 5 || Model.TrangThaiDonHangID == 6)
+            {
+                <div class="col-lg-12" align="right" style="padding-right:0;margin:0">
+                    <button class="datlai" onclick="window.location.href='@Url.Action("DatLai", "KhachHangs",new { DonHangID = Model.DonHangID})'">Đặt lại</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<script language="javascript">
+    document.getElementById("star1").onclick = function () {
+        document.getElementById("diem").value = 5;
+    };
+    document.getElementById("star2").onclick = function () {
+        document.getElementById("diem").value = 4;
+    };
+    document.getElementById("star3").onclick = function () {
+        document.getElementById("diem").value = 3;
+    };
+    document.getElementById("star4").onclick = function () {
+        document.getElementById("diem").value = 2;
+    };
+    document.getElementById("star5").onclick = function () {
+        document.getElementById("diem").value = 1;
+    };
+</script>

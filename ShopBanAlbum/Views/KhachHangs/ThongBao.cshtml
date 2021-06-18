@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ShopBanAlbum.Models.ThongBao>
+@{
+    ViewBag.Title = "THÔNG BÁO";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<style>
+    body {
+        margin: 0;
+    }
+
+    section {
+        text-align: center;
+    }
+
+    .wrapper {
+        height: 58vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<div class="container">
+    <h3 align="center" style="color:aliceblue;margin:10px 0;margin-left:10px;font-family: 'Coiny', cursive">THÔNG BÁO</h3>
+    <h4 align="center" style="color:lightgray;font-size:15px"> (@Model.Count() thông báo)</h4>
+    <div>
+        @if (Model.Count() == 0)
+        {
+            <div class="wrapper">
+                <div class="container">
+                    <section class="message">
+                        <div style="margin:20px 0">
+                        </div>
+                    </section>
+                </div>
+            </div>
+        }
+        @foreach (var item in Model)
+        {
+            if (item.TrangThai == 1)
+            {
+                <div style="padding:10px 0">
+                    <div style="background-color:rgba(246, 71, 71, 0.8);border-radius:10px;color:white;padding:10px 20px">
+                        <p style="padding:0;margin:0">Đơn hàng mã <span style="color:deepskyblue">#@item.DongHangID</span> vừa cập nhật trạng thái thành: <span style="color:palegreen">@item.TrangThaiDonHang.TenTrangThaiDonHang</span></p>
+                        <p style="padding:0;margin:0">Cập nhật lúc @item.ThoiGian</p>
+                        <a  href='@Url.Action("ThongTinDonHang", "KhachHangs", new { id = item.DongHangID,tt = item.ThongBaoID })'>Xem đơn hàng</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div style="padding:10px 0">
+                    <div style="background-color:rgba(0, 0, 0, 0.4);border-radius:10px;color:white;padding:10px 20px">
+                        <p style="padding:0;margin:0">Đơn hàng mã <span style="color:deepskyblue">#@item.DongHangID</span> vừa cập nhật trạng thái thành: <span style="color:palegreen">@item.TrangThaiDonHang.TenTrangThaiDonHang</span></p>
+                        <p style="padding:0;margin:0">Cập nhật lúc @item.ThoiGian</p>
+                        <a href='@Url.Action("ThongTinDonHang", "KhachHangs", new { id = item.DongHangID,tt = item.ThongBaoID })'>Xem đơn hàng</a>
+                    </div>
+                </div>
+            }
+
+        }
+    </div>
+</div>
+

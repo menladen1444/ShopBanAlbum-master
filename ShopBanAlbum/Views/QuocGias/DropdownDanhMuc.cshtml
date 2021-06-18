@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ShopBanAlbum.Models.QuocGia>
+
+<li class="menu dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white">Danh mục <span class="caret"></span></a>
+    <ul class="dropdown-menu" style="margin-top:5px;border-radius:10px">
+        @foreach (var item in Model)
+        {
+            <li class="danhmuc"><a href="@Url.Action("DanhMuc","QuocGias",new {id=item.QuocGiaID })"class="link">@item.TenQuocGia</a></li>
+        }
+    </ul>
+</li>

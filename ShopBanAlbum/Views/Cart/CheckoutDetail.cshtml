@@ -1,0 +1,30 @@
+﻿@model ShopBanAlbum.Models.Cart
+
+<h3 style="margin-top:0px;margin-bottom:20px;color:grey">Đơn hàng</h3>
+<hr />
+<div class="row">
+    <div class="col-lg-8">
+        <h4 style="color:lightgray">Sản phẩm</h4>
+    </div>
+    <div class="col-lg-4" align="right">
+        <h4 style="color:lightgray">Đơn giá</h4>
+    </div>
+    @foreach (var item in Model.Items)
+    {
+        double total = Convert.ToDouble(item._shopping_product.GiaBan * item._shopping_quantity);
+        <div class="col-lg-8">
+            <p style="color:#4db0de">@item._shopping_product.TenAlbum <span class="font-weight-bold">x @item._shopping_quantity</span></p>
+        </div>
+        <div class="col-lg-4" align="right">
+            <p style="color:#eff293">@total.ToString("N0")đ</p>
+        </div>
+    }
+</div>
+<div class="row" style="background-color:rgba(0, 0, 0, 0.2);padding:10px 0;margin-top:20px;border-radius:10px">
+    <div class="col-lg-8">
+        <h4 style="color:grey">Tổng cộng đơn hàng</h4>
+    </div>
+    <div class="col-4" align="right" style="padding-right:20px">
+        <h4 style="color:#eef456">@Model.Total_Money().ToString("N0")đ</h4>
+    </div>
+</div>

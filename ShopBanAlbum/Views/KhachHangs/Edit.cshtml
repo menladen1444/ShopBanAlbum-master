@@ -1,0 +1,64 @@
+﻿@model ShopBanAlbum.Models.KhachHang
+
+@{ ViewBag.Title = "CHỈNH SỬA THÔNG TIN";
+   Layout = "~/Views/shared/Layout.cshtml";
+ }
+
+<div class="container">
+    <h2 style="color:#000000;margin:20px 0;margin-left:10px;font-family: 'Coiny', cursive">CẬP NHẬT THÔNG TIN KHÁCH HÀNG</h2>
+    <div class="row" style="background-color:rgba(0, 0, 0, 0.8);border-radius:30px;font-family: 'Coiny', cursive;padding:50px 40px">
+        <div class="col-lg-5" align="center">
+            <div style="padding:20px">
+                <i class="fas fa-user-tie" style="font-size:300px;color:#f89720"></i>
+            </div>
+            <div align="center"><button class="gohome" onclick="window.location.href='@Url.Action("Details", "KhachHangs",new { id=Model.KhachHangID})'">Về trang khách hàng</button></div>
+
+        </div>
+        <div class="col-lg-7">
+            <div style="background-color: #0e313c;border-radius:30px;padding:30px">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.KhachHangID)
+
+                        <div style="width:100%">
+                            <div>
+                                <p style="margin:10px 0" class="lable">Cập nhật họ và tên</p>
+                                @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "lienheinput", style = "height:45px", autocomplete = "off" })
+                                <p>@Html.ValidationMessageFor(model => model.TenKhachHang, "", new { @class = "text-danger" })</p>
+                            </div>
+
+                            <div>
+                                <p style="margin:10px 0" class="lable">Cập nhật số điện thoại</p>
+                                @Html.TextBoxFor(model => model.SDT, new { @class = "lienheinput", style = "height:45px", autocomplete = "off" })
+                                <p>@Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })</p>
+                            </div>
+
+                            <div>
+                                <p style="margin:10px 0" class="lable">Cập nhật địa chỉ giao hàng</p>
+                                @Html.TextAreaFor(model => model.DiaChi, new { @class = "noidung", style = "height:55px", autocomplete = "off" })
+                                <p>@Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })</p>
+                            </div>
+
+                            <input type="submit" class="dangky" style="padding:10px 20px;border:none;color:rgba(0, 0, 0, 0.8)" value="CẬP NHẬT THAY ĐỔI" />
+
+                        </div>
+
+                    </div>}
+            </div>
+        </div>
+        @if (ViewBag.capnhatthanhcong != null)
+        {
+            <div class="col-lg-12" align="center" style="padding-top:30px">
+                <p style="color:lawngreen">@ViewBag.capnhatthanhcong</p>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+

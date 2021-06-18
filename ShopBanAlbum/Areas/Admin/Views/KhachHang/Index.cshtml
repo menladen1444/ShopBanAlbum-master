@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@section Styles{
+    <!-- Custom fonts for this template-->
+    <link href="/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+}
+@section Scripts{
+    <!-- Bootstrap core JavaScript-->
+    <script src="/Assets/Admin/vendor/jquery/jquery.min.js"></script>
+    <script src="/Assets/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/Assets/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/Assets/Admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/Assets/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/Assets/Admin/js/demo/datatables-demo.js"></script>
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-flex justify-content-between pb-2">
+        <h1 class="h3 mb-2 text-gray-800">Danh sách Khách hàng</h1>
+        <div>
+            <a type="submit" class="btn btn-success text-hide" href="@Url.Action("Create","KhachHang")">
+                <i class="fas fa-plus"></i>
+                <span>Thêm khách hàng</span>
+            </a>
+        </div>
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="khachHangDataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>KhachHangID</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <th>Điểm tích lũy</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>KhachHangID</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <th>Điểm tích lũy</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<script>
+function DeleteData(KhachHangID) {
+    if (confirm("Bạn chắc chắn muốn xóa khách hàng này ...?")) {
+        Delete(KhachHangID);
+    }
+    else {
+        return false;
+    }
+}
+
+    function Delete(KhachHangID) {
+var url = '@Url.Content("KhachHang/DeleteKhachHang")';
+        $.post(url, { ID: KhachHangID }, function (data) {
+        if (data == "Deleted") {
+            alert("Xóa thành công!");
+            oTable = $('#khachHangDataTable').DataTable();
+            oTable.draw();
+        }
+        else {
+            alert("Something Went Wrong!");
+        }
+    });
+}
+</script>

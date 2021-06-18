@@ -1,0 +1,336 @@
+﻿@model ShopBanAlbum.Models.ListTrangThaiDonHang
+@{
+    ViewBag.Title = "DANH SÁCH ĐƠN HÀNG";
+    Layout = "~/Views/shared/Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 30px; font-family: 'Coiny', cursive; padding: 20px 20px ">
+        <h3 style="color:slategray;margin:10px 0;margin-left:10px;font-family: 'Coiny', cursive">DANH SÁCH ĐƠN HÀNG<span style="color:aliceblue"> (@Model.donHang.Count() đơn hàng)</span></h3>
+        <div class="col-lg-12" style="padding-bottom:30px;padding-top:20px">
+            <input class="button-trangthai" type="button" id="btn" value="Tất cả" />
+            <input class="button-trangthai" type="button" id="btn1" value="Chờ xác nhận" />
+            <input class="button-trangthai" type="button" id="btn2" value="Xác nhận giao hàng" />
+            <input class="button-trangthai" type="button" id="btn3" value="Đang giao" />
+            <input class="button-trangthai" type="button" id="btn4" value="Đã nhận" />
+            <input class="button-trangthai" type="button" id="btn5" value="Giao không thành công" />
+            <input class="button-trangthai" type="button" id="btn6" value="Đã hủy" />
+        </div>
+
+        <div id="tt0">
+            @foreach (var item in Model.donHang)
+            {
+
+                <div class="col-lg-12" style="padding:10px">
+                    <div style="background-color: #0e313c;border-radius:30px;padding:20px">
+                        <div style="margin-bottom:15px;color:gray;font-size:18px">
+                            <span style="background-color:rgba(0, 0, 0, 0.5);padding:8px 20px;border-radius:15px">Mã đơn hàng <span style="color:lightblue">#@item.DonHangID</span></span>
+                            <span style="float:right;color:rgba(0, 0, 0, 0.4);font-size:16px">@item.NgayDatHang</span>
+                        </div>
+                        @foreach (var item1 in item.ChiTietDonHangs)
+                        {
+                            <div class="row" style="padding:5px 10px">
+                                <div class="col-lg-1 col-xs-3">
+                                    <img  alt="image" src="~/Contents/images/album/@item1.Album.HinhAnh" style="width:60px;border-radius:5px;float:left">
+                                </div>
+                                <div class="col-lg-9 col-xs-6">
+                                    <span style="color:#4db0de">@item1.Album.TenAlbum<span style="color:lightblue;margin-left:10px">[ @item1.Album.PhuKien ]</span></span><br>
+                                    <span class="font-weight-bold" style="color:grey">x @item1.SoLuong</span>
+                                </div>
+                                <div class="col-lg-2 col-xs-3" align="right">
+                                    <p style="color:#eff293">@item1.GiaBan.ToString("N0") đ</p>
+                                </div>
+
+                            </div>
+                        }
+                        <button class="gohome" style="margin:0" onclick="window.location.href='@Url.Action("ThongTinDonHang", "KhachHangs", new {id = item.DonHangID })'">Xem chi tiết</button>
+                        <div style="margin-top:5px;background-color:rgba(0, 0, 0, 0.2);border-radius:15px;padding:8px">
+                            <span style="padding:5px 10px;border-radius:10px;background-color:rgba(0, 0, 0, 0.6)">Trạng thái</span><span style="color:lightblue;margin-left:10px">@item.TrangThaiDonHang.TenTrangThaiDonHang</span>
+                            <span style="float:right"><span style="color:dodgerblue">TỔNG TIỀN</span> <span style="color: #eef456;margin-left:10px">@item.TongTien.ToString("N0") đ</span></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="tt1" style="display:none">
+            @foreach (var item in Model.donHang1)
+            {
+                <div class="col-lg-12" style="padding:10px">
+                    <div style="background-color: #0e313c;border-radius:30px;padding:20px">
+                        <div style="margin-bottom:15px;color:gray;font-size:18px">
+                            <span style="background-color:rgba(0, 0, 0, 0.5);padding:8px 20px;border-radius:15px">Mã đơn hàng <span style="color:lightblue">#@item.DonHangID</span></span>
+                            <span style="float:right;color:rgba(0, 0, 0, 0.4);font-size:16px">@item.NgayDatHang</span>
+                        </div>
+                        @foreach (var item1 in item.ChiTietDonHangs)
+                        {
+                            <div class="row" style="padding:5px 10px">
+                                <div class="col-lg-1">
+                                    <img alt="image" src="~/Contents/images/album/@item1.Album.HinhAnh" style="width:60px;border-radius:5px">
+                                </div>
+                                <div class="col-lg-9">
+                                    <span style="color:#4db0de">@item1.Album.TenAlbum<span style="color:lightblue;margin-left:10px">[ @item1.Album.PhuKien ]</span></span><br>
+                                    <span class="font-weight-bold" style="color:grey">x @item1.SoLuong</span>
+                                </div>
+                                <div class="col-lg-2" align="right">
+                                    <p style="color:#eff293">@item1.GiaBan.ToString("N0") đ</p>
+                                </div>
+                            </div>
+                        }
+                        <button class="gohome" style="margin:0" onclick="window.location.href='@Url.Action("ThongTinDonHang", "KhachHangs", new {id = item.DonHangID })'">Xem chi tiết</button>
+                        <div style="margin-top:5px;background-color:rgba(0, 0, 0, 0.2);border-radius:15px;padding:8px">
+                            <span style="padding:5px 10px;border-radius:10px;background-color:rgba(0, 0, 0, 0.6)">Trạng thái</span><span style="color:lightblue;margin-left:10px">@item.TrangThaiDonHang.TenTrangThaiDonHang</span>
+                            <span style="float:right"><span style="color:dodgerblue">TỔNG TIỀN</span> <span style="color: #eef456;margin-left:10px">@item.TongTien.ToString("N0") đ</span></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="tt2" style="display:none">
+            @foreach (var item in Model.donHang2)
+            {
+                <div class="col-lg-12" style="padding:10px">
+                    <div style="background-color: #0e313c;border-radius:30px;padding:20px">
+                        <div style="margin-bottom:15px;color:gray;font-size:18px">
+                            <span style="background-color:rgba(0, 0, 0, 0.5);padding:8px 20px;border-radius:15px">Mã đơn hàng <span style="color:lightblue">#@item.DonHangID</span></span>
+                            <span style="float:right;color:rgba(0, 0, 0, 0.4);font-size:16px">@item.NgayDatHang</span>
+                        </div>
+                        @foreach (var item1 in item.ChiTietDonHangs)
+                        {
+                            <div class="row" style="padding:5px 10px">
+                                <div class="col-lg-1">
+                                    <img alt="image" src="~/Contents/images/album/@item1.Album.HinhAnh" style="width:60px;border-radius:5px">
+                                </div>
+                                <div class="col-lg-9">
+                                    <span style="color:#4db0de">@item1.Album.TenAlbum<span style="color:lightblue;margin-left:10px">[ @item1.Album.PhuKien ]</span></span><br>
+                                    <span class="font-weight-bold" style="color:grey">x @item1.SoLuong</span>
+                                </div>
+                                <div class="col-lg-2" align="right">
+                                    <p style="color:#eff293">@item1.GiaBan.ToString("N0") đ</p>
+                                </div>
+                            </div>
+                        }
+                        <button class="gohome" style="margin:0" onclick="window.location.href='@Url.Action("ThongTinDonHang", "KhachHangs", new {id = item.DonHangID })'">Xem chi tiết</button>
+                        <div style="margin-top:5px;background-color:rgba(0, 0, 0, 0.2);border-radius:15px;padding:8px">
+                            <span style="padding:5px 10px;border-radius:10px;background-color:rgba(0, 0, 0, 0.6)">Trạng thái</span><span style="color:lightblue;margin-left:10px">@item.TrangThaiDonHang.TenTrangThaiDonHang</span>
+                            <span style="float:right"><span style="color:dodgerblue">TỔNG TIỀN</span> <span style="color: #eef456;margin-left:10px">@item.TongTien.ToString("N0") đ</span></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="tt3" style="display:none">
+            @foreach (var item in Model.donHang3)
+            {
+                <div class="col-lg-12" style="padding:10px">
+                    <div style="background-color: #0e313c;border-radius:30px;padding:20px">
+                        <div style="margin-bottom:15px;color:gray;font-size:18px">
+                            <span style="background-color:rgba(0, 0, 0, 0.5);padding:8px 20px;border-radius:15px">Mã đơn hàng <span style="color:lightblue">#@item.DonHangID</span></span>
+                            <span style="float:right;color:rgba(0, 0, 0, 0.4);font-size:16px">@item.NgayDatHang</span>
+                        </div>
+                        @foreach (var item1 in item.ChiTietDonHangs)
+                        {
+                            <div class="row" style="padding:5px 10px">
+                                <div class="col-lg-1">
+                                    <img alt="image" src="~/Contents/images/album/@item1.Album.HinhAnh" style="width:60px;border-radius:5px">
+                                </div>
+                                <div class="col-lg-9">
+                                    <span style="color:#4db0de">@item1.Album.TenAlbum<span style="color:lightblue;margin-left:10px">[ @item1.Album.PhuKien ]</span></span><br>
+                                    <span class="font-weight-bold" style="color:grey">x @item1.SoLuong</span>
+                                </div>
+                                <div class="col-lg-2" align="right">
+                                    <p style="color:#eff293">@item1.GiaBan.ToString("N0") đ</p>
+                                </div>
+                            </div>
+                        }
+                        <button class="gohome" style="margin:0" onclick="window.location.href='@Url.Action("ThongTinDonHang", "KhachHangs", new {id = item.DonHangID })'">Xem chi tiết</button>
+                        <div style="margin-top:5px;background-color:rgba(0, 0, 0, 0.2);border-radius:15px;padding:8px">
+                            <span style="padding:5px 10px;border-radius:10px;background-color:rgba(0, 0, 0, 0.6)">Trạng thái</span><span style="color:lightblue;margin-left:10px">@item.TrangThaiDonHang.TenTrangThaiDonHang</span>
+                            <span style="float:right"><span style="color:dodgerblue">TỔNG TIỀN</span> <span style="color: #eef456;margin-left:10px">@item.TongTien.ToString("N0") đ</span></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="tt4" style="display:none">
+            @foreach (var item in Model.donHang4)
+            {
+                <div class="col-lg-12" style="padding:10px">
+                    <div style="background-color: #0e313c;border-radius:30px;padding:20px">
+                        <div style="margin-bottom:15px;color:gray;font-size:18px">
+                            <span style="background-color:rgba(0, 0, 0, 0.5);padding:8px 20px;border-radius:15px">Mã đơn hàng <span style="color:lightblue">#@item.DonHangID</span></span>
+                            <span style="float:right;color:rgba(0, 0, 0, 0.4);font-size:16px">@item.NgayDatHang</span>
+                        </div>
+                        @foreach (var item1 in item.ChiTietDonHangs)
+                        {
+                            <div class="row" style="padding:5px 10px">
+                                <div class="col-lg-1">
+                                    <img alt="image" src="~/Contents/images/album/@item1.Album.HinhAnh" style="width:60px;border-radius:5px">
+                                </div>
+                                <div class="col-lg-9">
+                                    <span style="color:#4db0de">@item1.Album.TenAlbum<span style="color:lightblue;margin-left:10px">[ @item1.Album.PhuKien ]</span></span><br>
+                                    <span class="font-weight-bold" style="color:grey">x @item1.SoLuong</span>
+                                </div>
+                                <div class="col-lg-2" align="right">
+                                    <p style="color:#eff293">@item1.GiaBan.ToString("N0") đ</p>
+                                </div>
+
+                            </div>
+                        }
+                        <button class="gohome" style="margin:0" onclick="window.location.href='@Url.Action("ThongTinDonHang", "KhachHangs", new {id = item.DonHangID })'">Xem chi tiết</button>
+                        <div style="margin-top:5px;background-color:rgba(0, 0, 0, 0.2);border-radius:15px;padding:8px">
+                            <span style="padding:5px 10px;border-radius:10px;background-color:rgba(0, 0, 0, 0.6)">Trạng thái</span><span style="color:lightblue;margin-left:10px">@item.TrangThaiDonHang.TenTrangThaiDonHang</span>
+                            <span style="float:right"><span style="color:dodgerblue">TỔNG TIỀN</span> <span style="color: #eef456;margin-left:10px">@item.TongTien.ToString("N0") đ</span></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="tt5" style="display:none">
+            @foreach (var item in Model.donHang5)
+            {
+                <div class="col-lg-12" style="padding:10px">
+                    <div style="background-color: #0e313c;border-radius:30px;padding:20px">
+                        <div style="margin-bottom:15px;color:gray;font-size:18px">
+                            <span style="background-color:rgba(0, 0, 0, 0.5);padding:8px 20px;border-radius:15px">Mã đơn hàng <span style="color:lightblue">#@item.DonHangID</span></span>
+                            <span style="float:right;color:rgba(0, 0, 0, 0.4);font-size:16px">@item.NgayDatHang</span>
+                        </div>
+                        @foreach (var item1 in item.ChiTietDonHangs)
+                        {
+                            <div class="row" style="padding:5px 10px">
+                                <div class="col-lg-1">
+                                    <img alt="image" src="~/Contents/images/album/@item1.Album.HinhAnh" style="width:60px;border-radius:5px">
+                                </div>
+                                <div class="col-lg-9">
+                                    <span style="color:#4db0de">@item1.Album.TenAlbum<span style="color:lightblue;margin-left:10px">[ @item1.Album.PhuKien ]</span></span><br>
+                                    <span class="font-weight-bold" style="color:grey">x @item1.SoLuong</span>
+                                </div>
+                                <div class="col-lg-2" align="right">
+                                    <p style="color:#eff293">@item1.GiaBan.ToString("N0") đ</p>
+                                </div>
+                            </div>
+                        }
+                        <button class="gohome" style="margin:0" onclick="window.location.href='@Url.Action("ThongTinDonHang", "KhachHangs", new {id = item.DonHangID })'">Xem chi tiết</button>
+                        <div style="margin-top:5px;background-color:rgba(0, 0, 0, 0.2);border-radius:15px;padding:8px">
+                            <span style="padding:5px 10px;border-radius:10px;background-color:rgba(0, 0, 0, 0.6)">Trạng thái</span><span style="color:lightblue;margin-left:10px">@item.TrangThaiDonHang.TenTrangThaiDonHang</span>
+                            <span style="float:right"><span style="color:dodgerblue">TỔNG TIỀN</span> <span style="color: #eef456;margin-left:10px">@item.TongTien.ToString("N0") đ</span></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="tt6" style="display:none">
+            @foreach (var item in Model.donHang6)
+            {
+                <div class="col-lg-12" style="padding:10px">
+                    <div style="background-color: #0e313c;border-radius:30px;padding:20px">
+                        <div style="margin-bottom:15px;color:gray;font-size:18px">
+                            <span style="background-color:rgba(0, 0, 0, 0.5);padding:8px 20px;border-radius:15px">Mã đơn hàng <span style="color:lightblue">#@item.DonHangID</span></span>
+                            <span style="float:right;color:rgba(0, 0, 0, 0.4);font-size:16px">@item.NgayDatHang</span>
+                        </div>
+                        @foreach (var item1 in item.ChiTietDonHangs)
+                        {
+                            <div class="row" style="padding:5px 10px">
+                                <div class="col-lg-1">
+                                    <img alt="image" src="~/Contents/images/album/@item1.Album.HinhAnh" style="width:60px;border-radius:5px">
+                                </div>
+                                <div class="col-lg-9">
+                                    <span style="color:#4db0de">@item1.Album.TenAlbum<span style="color:lightblue;margin-left:10px">[ @item1.Album.PhuKien ]</span></span><br>
+                                    <span class="font-weight-bold" style="color:grey">x @item1.SoLuong</span>
+                                </div>
+                                <div class="col-lg-2" align="right">
+                                    <p style="color:#eff293">@item1.GiaBan.ToString("N0") đ</p>
+                                </div>
+                            </div>
+                        }
+                        <button class="gohome" style="margin:0" onclick="window.location.href='@Url.Action("ThongTinDonHang", "KhachHangs", new {id = item.DonHangID })'">Xem chi tiết</button>
+                        <div style="margin-top:5px;background-color:rgba(0, 0, 0, 0.2);border-radius:15px;padding:8px">
+                            <span style="padding:5px 10px;border-radius:10px;background-color:rgba(0, 0, 0, 0.6)">Trạng thái</span><span style="color:lightblue;margin-left:10px">@item.TrangThaiDonHang.TenTrangThaiDonHang</span>
+                            <span style="float:right"><span style="color:dodgerblue">TỔNG TIỀN</span> <span style="color: #eef456;margin-left:10px">@item.TongTien.ToString("N0") đ</span></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<script language="javascript">
+    document.getElementById("btn").onclick = function () {
+        document.getElementById("tt0").style.display = 'block';
+        document.getElementById("tt1").style.display = 'none';
+        document.getElementById("tt2").style.display = 'none';
+        document.getElementById("tt3").style.display = 'none';
+        document.getElementById("tt4").style.display = 'none';
+        document.getElementById("tt5").style.display = 'none';
+        document.getElementById("tt6").style.display = 'none';
+    };
+    document.getElementById("btn1").onclick = function () {
+        document.getElementById("tt0").style.display = 'none';
+        document.getElementById("tt1").style.display = 'block';
+        document.getElementById("tt2").style.display = 'none';
+        document.getElementById("tt3").style.display = 'none';
+        document.getElementById("tt4").style.display = 'none';
+        document.getElementById("tt5").style.display = 'none';
+        document.getElementById("tt6").style.display = 'none';
+    };
+    document.getElementById("btn2").onclick = function () {
+        document.getElementById("tt0").style.display = 'none';
+        document.getElementById("tt1").style.display = 'none';
+        document.getElementById("tt2").style.display = 'block';
+        document.getElementById("tt3").style.display = 'none';
+        document.getElementById("tt4").style.display = 'none';
+        document.getElementById("tt5").style.display = 'none';
+        document.getElementById("tt6").style.display = 'none';
+    };
+    document.getElementById("btn3").onclick = function () {
+        document.getElementById("tt0").style.display = 'none';
+        document.getElementById("tt1").style.display = 'none';
+        document.getElementById("tt2").style.display = 'none';
+        document.getElementById("tt3").style.display = 'block';
+        document.getElementById("tt4").style.display = 'none';
+        document.getElementById("tt5").style.display = 'none';
+        document.getElementById("tt6").style.display = 'none';
+    };
+    document.getElementById("btn4").onclick = function () {
+        document.getElementById("tt0").style.display = 'none';
+        document.getElementById("tt1").style.display = 'none';
+        document.getElementById("tt2").style.display = 'none';
+        document.getElementById("tt3").style.display = 'none';
+        document.getElementById("tt4").style.display = 'block';
+        document.getElementById("tt5").style.display = 'none';
+        document.getElementById("tt6").style.display = 'none';
+    };
+    document.getElementById("btn5").onclick = function () {
+        document.getElementById("tt0").style.display = 'none';
+        document.getElementById("tt1").style.display = 'none';
+        document.getElementById("tt2").style.display = 'none';
+        document.getElementById("tt3").style.display = 'none';
+        document.getElementById("tt4").style.display = 'none';
+        document.getElementById("tt5").style.display = 'block';
+        document.getElementById("tt6").style.display = 'none';
+    };
+    document.getElementById("btn6").onclick = function () {
+        document.getElementById("tt0").style.display = 'none';
+        document.getElementById("tt1").style.display = 'none';
+        document.getElementById("tt2").style.display = 'none';
+        document.getElementById("tt3").style.display = 'none';
+        document.getElementById("tt4").style.display = 'none';
+        document.getElementById("tt5").style.display = 'none';
+        document.getElementById("tt6").style.display = 'block';
+    };
+
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-76614800-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-76614800-1');
+</script>

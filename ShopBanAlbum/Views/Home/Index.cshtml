@@ -1,0 +1,170 @@
+﻿
+@model ShopBanAlbum.Models.HomeModel
+@{ 
+    ViewBag.Title = "TRANG CHỦ";          
+    Layout = "~/Views/shared/Layout.cshtml"; 
+}
+@*@section head
+{
+    <meta name="description" content="THE ALBUM SHOP - Cửa hàng Album lớn nhất tại Việt Nam" />
+    <meta name="keywords" content="the album shop, mua album, cua hang the album" />
+}*@
+<div class="container">
+    <div class="stage" style="box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.1)">
+
+        <div id="SLDR-ONE" class="sldr">
+            <ul class="wrp animate">
+
+                @foreach (var item in Model.Carousels)
+                {
+    <li class="@item.ClassName">
+        <div class="skew">
+            <div class="wrap"><img alt="image" src="~/Contents/images/slider/@item.HinhAnh" width="1000" height="563"><div class="nameslider">⭐ @item.TenCarousel ⭐</div></div>
+        </div>
+    </li>}
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!------SẢN PHẨM NỔI BẬT------>
+
+<div class="container" style=" margin-bottom:20px">
+    <h3 style="font-weight:bold;margin:20px 0">SẢN PHẨM NỔI BẬT<i class="fa fa-caret-right" aria-hidden="true" style="margin:0 10px"></i><a href='@Url.Action("SanPham", "Home", new { id = 2 })' class="link">XEM THÊM</a></h3>
+    <div class="row" style="padding-right:15px">
+
+        @foreach (var item in Model.AlbumNoiBat)
+        {
+<div class="col-lg-3 col-xs-6" style="padding-right:0">
+    <div style=" box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.3);background-image: url('../Contents/images/background1.jpg')">
+        <a href='@Url.Action("ThongTinSanPham", "Home", new { id = item.AlbumID })'><img alt="image" src="~/Contents/images/album/@item.HinhAnh" class="card-img-top"></a>
+        <div align="center" class="sanphamnoibat">
+            <p class="name">@item.TenAlbum</p>
+            <p>NGÀY PHÁT HÀNH: <b>@item.NgayPhatHanh.Value.ToString("dd/MM/yyyy")</b></p>
+            <p>TÁC GIẢ: <b><a href='@Url.Action("OneArtist", "Home", new { id = item.TacGiaID })'>@item.TacGia.TenTacGia</a></b></p>
+            <p style="padding-bottom:10px">XUẤT XỨ: <b>@item.XuatXu</b></p>
+            <div class="row" style="padding-left:5px">
+                <div class="col-lg-5">
+                    <p class="price" style="color:#ef535d">@item.GiaBan.ToString("N0")đ</p>
+                </div>
+                <div class="col-lg-7">
+                    <a href="@Url.Action("CheckOut", "Cart", new { id = item.AlbumID , fastbuy = true})"><span class="buttonBuy">MUA</span></a>
+                    <a href="@Url.Action("AddtoCart", "Cart", new { id = item.AlbumID })"><span class="buttonaddcard" style="margin-left:5px"><i style="color:yellow" class='fas fa-cart-plus'></i></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>}
+
+    </div>
+</div>
+
+<!------SẢN PHẨM BÁN CHẠY------>
+
+<div class="container" style=" margin-bottom:20px">
+    <h3 style="font-weight:bold;margin:20px 0">SẢN PHẨM BÁN CHẠY<i class="fa fa-caret-right" aria-hidden="true" style="margin:0 10px"></i><a href='@Url.Action("SanPham", "Home", new { id = 3 })' class="link">XEM THÊM</a></h3>
+    <div class="row" style="padding-right:15px">
+
+        @foreach (var item in Model.AlbumBanChay)
+        {
+
+<div class="col-lg-4" style="padding-right:0;padding-bottom:10px">
+    <div style=" box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.3);background-color:#ffa726;padding-right:15px">
+        <div class="row">
+            <div class="col-lg-6">
+                <a href='@Url.Action("ThongTinSanPham", "Home", new { id = item.AlbumID })'><img alt="image" style="margin:10px" src="~/Contents/images/album/@item.HinhAnh" class="card-img-top"></a>
+            </div>
+            <div class="col-lg-6">
+                <div align="center" class="sanphamnoibat">
+                    <p style="font-family: 'Fredoka One', cursive;">@item.TenAlbum</p>
+                    <p>@item.NgayPhatHanh.Value.ToString("dd/MM/yyyy")</p>
+                    <p>Tác giả: <b><a href='@Url.Action("OneArtist", "Home", new { id = item.TacGiaID })'>@item.TacGia.TenTacGia</a></b></p>
+                    <p style="color:yellow; margin-bottom:10px" class="price">@item.GiaBan.ToString("N0") VND</p>
+                    <a href="@Url.Action("CheckOut", "Cart", new { id = item.AlbumID , fastbuy = true})"><span class="buttonBuy">MUA</span></a>
+                    <a href="@Url.Action("AddtoCart", "Cart", new { id = item.AlbumID })"><span class="buttonaddcard" style="margin-left:5px"><i style="color:yellow" class='fas fa-cart-plus'></i></span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>}
+
+
+    </div>
+</div>
+
+<!------TẤT CẢ SẢN PHẨM------>
+
+<div class="container" style=" margin-bottom:20px">
+    <h3 style="font-weight:bold;margin:20px 0">TẤT CẢ SẢN PHẨM<i class="fa fa-caret-right" aria-hidden="true" style="margin:0 10px"></i><a href='@Url.Action("SanPham", "Home", new { id = 1 })' class="link">XEM THÊM</a></h3>
+    <div class="row" style="padding-right:15px">
+
+        @foreach (var item in Model.AllAlbum)
+        {
+
+<div class="col-lg-3 col-xs-6" style="padding-right:0;margin-bottom:15px">
+    <div style=" box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.3);background-image: url('../Contents/images/background2.jpg')">
+        <a href='@Url.Action("ThongTinSanPham", "Home", new { id = item.AlbumID })'><img alt="image" style="padding:20px" src="~/Contents/images/album/@item.HinhAnh" class="card-img-top"></a>
+        <div align="center" style="padding-bottom:10px">
+            <p class="name">@item.TenAlbum | <a href='@Url.Action("OneArtist", "Home", new { id = item.TacGiaID })'>@item.TacGia.TenTacGia</a></p>
+            <div class="row" style="padding:10px;padding-left:15px;padding-bottom:0px">
+                <div class="col-lg-5">
+                    <p class="price" style="color:#ef535d">@item.GiaBan.ToString("N0")đ</p>
+                </div>
+                <div class="col-lg-7">
+                    <a href="@Url.Action("CheckOut", "Cart", new { id = item.AlbumID , fastbuy = true})"><span class="buttonBuy">MUA</span></a>
+                    <a href="@Url.Action("AddtoCart", "Cart", new { id = item.AlbumID })"><span class="buttonaddcard" style="margin-left:5px"><i style="color:yellow" class='fas fa-cart-plus'></i></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>}
+
+    </div>
+</div>
+
+<script>
+    $(window).load(function () {
+        $('.sldr').each(function () {
+            var th = $(this);
+            th.sldr({
+                focalClass: 'focalPoint',
+                offset: th.width() / 2,
+                sldrWidth: 'responsive',
+                nextSlide: th.nextAll('.sldr-nav.next:first'),
+                previousSlide: th.nextAll('.sldr-nav.prev:first'),
+                selectors: th.nextAll('.selectors:first').find('li'),
+                toggle: th.nextAll('.captions:first').find('div'),
+                sldrInit: sliderInit,
+                sldrStart: slideStart,
+                sldrComplete: slideComplete,
+                sldrLoaded: sliderLoaded,
+                sldrAuto: true,
+                sldrTime: 5000,
+                hasChange: true
+            });
+        });
+    });
+
+    function sliderInit(args) {
+
+    }
+
+    function slideLoaded(args) {
+
+    }
+
+    function sliderLoaded(args) {
+
+    }
+
+    function slideStart(args) {
+
+    }
+
+    function slideComplete(args) {
+
+    }
+
+</script>

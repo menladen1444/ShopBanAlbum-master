@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@section Scripts{
+    <!-- Page level plugins -->
+    <script src="/Assets/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/Assets/Admin/js/demo/datatables-demo.js"></script>
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-flex justify-content-between pb-2">
+        <h1 class="h3 mb-2 text-gray-800">Danh sách Bài hát</h1>
+        <div>
+            <a type="submit" class="btn btn-success" href="@Url.Action("Create","BaiHat")">
+                <i class="fas fa-plus"></i>
+                <span>Thêm Bài hát</span>
+            </a>
+        </div>
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="baiHatDataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>BaiHatID</th>
+                            <th>Tên bài hát</th>
+                            <th>Thời lượng</th>
+                            <th>Tên Album</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>BaiHatID</th>
+                            <th>Tên bài hát</th>
+                            <th>Thời lượng</th>
+                            <th>Tên Album</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<script>
+    function DeleteData(BaiHatID) {
+        if (confirm("Bạn chắc chắn muốn xóa Bài hát này ...?")) {
+        Delete(BaiHatID);
+    }
+    else {
+        return false;
+    }
+}
+
+    function Delete(BaiHatID) {
+        var url = '@Url.Content("/BaiHat/DeleteBaiHat")';
+        $.post(url, { ID: BaiHatID }, function (data) {
+        if (data == "Deleted") {
+            alert("Xóa thành công!");
+            oTable = $('#baiHatDataTable').DataTable();
+            oTable.draw();
+        }
+        else {
+            alert("Something Went Wrong!");
+        }
+    });
+}
+</script>

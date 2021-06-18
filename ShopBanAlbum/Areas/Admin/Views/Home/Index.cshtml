@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Scripts{
+    <!-- Page level plugins -->
+    <script src="/Assets/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/Assets/Admin/js/demo/datatables-demo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Tổng quát</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng khách hàng</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TongKhachHang</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tổng doanh thu</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TongDoanhThu.ToString("N0")đ</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tổng đơn hàng</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TongDonHang</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Tổng sản phẩm đã bán</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TongSanPhamDaBan</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-box fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Danh sách Đơn hàng</h1>
+    <div class="mb-2 d-flex justify-content-start">
+        <div style="display:inline" class="p-1"><a href="#" class="btn btn-primary btn01">Tất cả đơn hàng</a></div>
+        <div style="display:inline" class="p-1"><a href="#" class="btn btn-primary btnstatus">Đang chờ xác nhận</a></div>
+        <div style="display:inline" class="p-1"><a href="#" class="btn btn-primary btnstatus">Đã xác nhận</a></div>
+        <div style="display:inline" class="p-1"><a href="#" class="btn btn-primary btnstatus">Đang giao hàng</a></div>
+        <div style="display:inline" class="p-1"><a href="#" class="btn btn-primary btnstatus">Đã giao</a></div>
+        <div style="display:inline" class="p-1"><a href="#" class="btn btn-primary btnstatus">Giao hàng thất bại</a></div>
+        <div style="display:inline" class="p-1"><a href="#" class="btn btn-primary btnstatus">Đã hủy</a></div>
+
+
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="donHangDataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <th>Ngày đặt hàng</th>
+                            <th>Ghi chú</th>
+                            <th>Tên người đặt hàng</th>
+                            <th>Trạng thái đơn hàng</th>
+                            <th>Trạng thái thanh toán</th>
+                            <th>Hình thức thanh toán</th>
+                            <th>Detail</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <th>Ngày đặt hàng</th>
+                            <th>Ghi chú</th>
+                            <th>Tên người đặt hàng</th>
+                            <th>Trạng thái đơn hàng</th>
+                            <th>Trạng thái thanh toán</th>
+                            <th>Hình thức thanh toán</th>
+                            <th>Detail</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /.container-fluid -->
+<script>
+function DeleteData(DonHangID) {
+    if (confirm("Bạn chắc chắn muốn xóa đơn hàng này ...?")) {
+        Delete(DonHangID);
+    }
+    else {
+        return false;
+    }
+}
+
+function Delete(DonHangID) {
+var url = '@Url.Content("DonHang/DeleteDonHang")';
+$.post(url, { ID: DonHangID }, function (data) {
+        if (data == "Deleted") {
+            alert("Xóa thành công!");
+            oTable = $('#donHangDataTable').DataTable();
+            oTable.draw();
+        }
+        else {
+            alert("Something Went Wrong!");
+        }
+    });
+}
+</script>

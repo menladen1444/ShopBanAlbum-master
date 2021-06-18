@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ShopBanAlbum.Models.GioHang>
+
+@{
+    ViewBag.Title = "GIỎ HÀNG";
+    Layout = "~/Views/shared/Layout.cshtml";
+
+}
+@if (Model != null)
+{
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá tiền</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        <img alt="image" src="~/Contents/images/album/@item.Album.HinhAnh" style="width:60px" class="img-thumbnail">
+                    </th>
+                    <th>
+                        @item.Album.TenAlbum
+                    </th>
+                    <th>
+                        @item.Album.GiaBan.ToString("N0")đ
+                    </th>
+                    <th>
+                        @using (Html.BeginForm("Update_Quantity_Cart", "Cart"))
+                        {
+                            <input type="hidden" value="@item.Album.AlbumID" name="AlbumID" />
+                            <input style="width:50px" type="number" value="@item.SoLuong" name="SoLuong" />
+                            <input class="btn btn-primary" type="submit" value="Cập nhật" />
+                        }
+                    </th>
+                    <th>
+                        @{
+                            double total = Convert.ToDouble(item.Album.GiaBan * item.SoLuong);
+                        }
+                        @total.ToString("N0")đ
+                    </th>
+                    <th>
+                        <a href="@Url.Action("RemoveCart", "Cart", new { id = item.Album.AlbumID })" class="btn btn-danger">XÓA</a>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="text-right" style=" font-weight: bold; ">
+            <div class="text-uppercase">Tổng cộng: <div class="text-danger" style="display: inline">@ViewBag.tongtien.ToString("N0")đ</div></div>
+        </div>
+    </div>
+    <div class="text-right" style=" font-weight: bold;padding-bottom:10px ">
+        <a href="@Url.Action("Index","Home")"><span class="btn btn-default">Tiếp tục mua hàng</span></a>
+        <a href="@Url.Action("Checkout","Cart")"><span class="btn btn-primary">Tiến hành đặt hàng</span></a>
+    </div>
+</div>
+}
+else
+{
+    <div class="container p-5 text-center">
+        <h3 class="text-danger">Giỏ hàng chưa có sản phẩm nào!</h3>
+        <div class="button"><a href="@Url.Action("Index","Home")">Trở về trang chủ</a></div>
+    </div>
+}

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "THANH TOÁN THẤT BẠI";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    section {
+        text-align: center;
+    }
+
+    .wrapper {
+        height: 58vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<div class="wrapper" style="font-family: 'Coiny', cursive">
+    <div class="container">
+        <section class="message">
+            <div style="margin:20px 0">
+                <h2 class="m-4 text-danger">Thanh toán thất bại!</h2>
+                <h4 align="center"><button class="gohome" onclick="window.location.href='@Url.Action("Index", "Home")'">Trở về trang chủ</button></h4>
+            </div>
+        </section>
+    </div>
+</div>
+

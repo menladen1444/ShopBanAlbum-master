@@ -1,0 +1,115 @@
+﻿@model ShopBanAlbum.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2 class="mb-3">Chi tiết Album</h2>
+    <hr />
+    <div>
+        <h4>Thông tin Album</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.QuocGia.TenQuocGia)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.QuocGia.TenQuocGia)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TacGia.TenTacGia)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TacGia.TenTacGia)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TheLoai.TenTheLoai)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TheLoai.TenTheLoai)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TenAlbum)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenAlbum)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HinhAnh)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HinhAnh)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayPhatHanh)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NgayPhatHanh)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.GiaBan)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GiaBan)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SoLuong)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DaBan)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DaBan)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DiemDanhGia)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DiemDanhGia)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.XuatXu)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.XuatXu)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhuKien)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhuKien)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

@@ -1,0 +1,26 @@
+﻿@model ShopBanAlbum.Models.QuocGia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuocGia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenQuocGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenQuocGia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuocGiaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

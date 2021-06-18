@@ -1,0 +1,68 @@
+﻿@model ShopBanAlbum.Models.KhachHang
+@{
+    ViewBag.Title = "THÔNG TIN TÀI KHOẢN";
+    Layout = "~/Views/shared/Layout.cshtml";
+}
+<div class="container">
+    <h2 style="color:#071e25;margin:20px 0;margin-left:10px;font-family: 'Coiny', cursive">Thông tin khách hàng</h2>
+    <div class="row" style="background-color:rgba(0, 0, 0, 0.6);border-radius:50px;font-family: 'Coiny', cursive;padding:20px 20px">
+        <div class="col-lg-9" style="padding:10px 25px">
+            <div class="row" style="padding:38px 0;background-color: #0e313c;border-radius:50px">
+                <div class="col-lg-3">
+                    <div align="center">
+                        <i class="fas fa-user-tie" style="font-size:145px;color:#f89720"></i>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div>
+                        <p style="margin:0;color:#1d84a4;font-size:18px">TÊN<i style="margin:0 5px;margin-right:10px" class="fas fa-caret-right"></i><span style="color:#96d4e8;padding-left:5px;font-size:25px">@Model.TenKhachHang</span></p>
+                        <p style="margin:0;color:#1d84a4;font-size:18px">EMAIL<i style="margin:0 5px;margin-right:10px" class="fas fa-caret-right"></i><span style="color:#96d4e8;padding-left:5px;font-size:25px">@Model.EmailKhachHang</span></p>
+                        <p style="margin:0;color:#1d84a4;font-size:18px">SỐ ĐIỆN THOẠI<i style="margin:0 5px;margin-right:10px" class="fas fa-caret-right"></i><span style="color:#96d4e8;padding-left:5px;font-size:25px">@Model.SDT</span></p>
+                        <p style="margin:0;color:#1d84a4;font-size:18px">ĐỊA CHỈ<i style="margin:0 5px;margin-right:10px" class="fas fa-caret-right"></i><span style="color:#96d4e8;padding-left:5px;font-size:25px">@Model.DiaChi</span></p>
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <div class="col-lg-3" align="center">
+            <div style="padding:10px 0">
+                <p class="DiemTichLuy">@Model.DiemKhachHang.ToString("N0") <br>điểm</p>
+                <div style="color:#f89720;font-size:20px;margin-top:10px">Điểm tích lũy</div>
+            </div>s
+        </div>
+        <div style="padding-left:10px">
+            <button class="ButtonChinhSuaThongTin" onclick="window.location.href='@Url.Action("Edit", "KhachHangs",new { id=Model.KhachHangID})'">CHỈNH SỬA THÔNG TIN CÁ NHÂN</button>
+            <button class="ButtonThayDoiMatKhau" onclick="window.location.href='@Url.Action("ThayDoiMatKhau", "KhachHangs")'">CẬP NHẬT MẬT KHẨU</button>
+            <button class="ButtonDonHang" onclick="window.location.href='@Url.Action("DonHang", "KhachHangs",new { id=Model.KhachHangID})'">ĐƠN HÀNG</button>
+        </div>
+       
+    </div>
+
+    <h2 style="color:#000000;margin:20px 0;margin-left:10px;margin-top:50PX;font-family: 'Coiny', cursive">SẢN PHẨM ĐÃ THÍCH</h2>
+    <div class="row" style="font-family: 'Coiny', cursive">
+        @foreach (var item in Model.SanPhamYeuThiches)
+        {
+            if (item.TrangThai == 1)
+            {
+                <div class="col-lg-2 col-xs-6" style="padding-right:0;padding-bottom:10px;margin-bottom:15px">
+                    <div style="padding:5px;padding-left:0">
+                        <div>
+                            <a href='@Url.Action("ThongTinSanPham", "Home", new { id = item.AlbumID })'><img alt="image" style="border-radius:10px" src="~/Contents/images/album/@item.Album.HinhAnh" class="card-img-top"></a>
+                            <div align="center" style="padding-bottom:10px;margin-top:10px">
+                                <p style="color:#fac91d;margin-bottom:0">@item.Album.TenAlbum</p>
+                                <p style="color:rgba(0, 0, 0, 0.5)">@item.Album.TacGia.TenTacGia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+    </div>
+    <div style="margin-bottom: 30px; margin-left: 10px">
+        @if (Model.SanPhamYeuThiches.Count == 0)
+        {
+            <span style="font-family: 'Coiny', cursive;color:rgba(0, 0, 0, 0.6);font-size:16px;">Không có sản phẩm yêu thích ( <span style="color:#187593">nhấn vào trái tim <i style="color:#0a4254" class="fas fa-heart"></i> bên cạnh tên sản phẩm để thêm vào danh sách yêu thích của bạn nhé!</span> )</span>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model ShopBanAlbum.Models.QuocGia
+
+@{
+    ViewBag.Title = "DANH MỤC - " + Model.TenQuocGia;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container" style=" margin-bottom:20px">
+    <h3 style="font-weight:bold;margin:20px 0">QUỐC GIA<i class="fa fa-caret-right" aria-hidden="true" style="margin:0 10px"></i><a class="link">@Model.TenQuocGia</a></h3>
+    <div class="row" style="padding-right:15px">
+
+        @foreach (var item in Model.Albums)
+        {
+            <div class="col-lg-3 col-xs-6" style="padding-right:0;margin-bottom:15px">
+                <div style=" box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.3);background-color:lightblue">
+                    <a href='@Url.Action("ThongTinSanPham", "Home", new { id = item.AlbumID })'><img alt="image" style="padding:20px" src="~/Contents/images/album/@item.HinhAnh" class="card-img-top"></a>
+                    <div align="center" style="padding-bottom:10px">
+                        <p class="name">@item.TenAlbum | <a href='@Url.Action("OneArtist", "Home", new { id = item.TacGiaID })'>@item.TacGia.TenTacGia</a></p>
+                        <div class="row" style="padding:10px;padding-left:15px;padding-bottom:0px">
+                            <div class="col-lg-5">
+                                <p class="price" style="color:#ef535d">@item.GiaBan.ToString("N0")đ</p>
+                            </div>
+                            <div class="col-lg-7">
+                                <a href="@Url.Action("CheckOut", "Cart", new { id = item.AlbumID , fastbuy = true})"><span class="buttonBuy">MUA</span></a>
+                                <a href="@Url.Action("AddtoCart", "Cart", new { id = item.AlbumID })"><span class="buttonaddcard" style="margin-left:5px"><i style="color:yellow" class='fas fa-cart-plus'></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
+

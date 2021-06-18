@@ -1,0 +1,65 @@
+﻿
+@model ShopBanAlbum.Models.AllModel
+@{
+    ViewBag.Title = "TÌM KIẾM - "+ ViewBag.Title;
+    Layout = "~/Views/shared/Layout.cshtml";
+
+}
+<div class="page container">
+    @if (Model.TacGias.Count() == 0 && Model.Albums.Count() == 0)
+    {
+        <h2 style="margin-bottom:24%;text-align:center;margin-top:60px;font-family: 'Yanone Kaffeesatz', sans-serif;">KHÔNG CÓ KẾT QUẢ TRẢ VỀ</h2>
+    }
+    else
+    {
+        <div class="row" style="margin-top:30px;margin-bottom:12%">
+            <div class="col-lg-2" style="padding-top:40px">
+                <p style="font-weight:bold;font-family: 'Yanone Kaffeesatz', sans-serif;font-size:27px">Có <span style="color:#fdbb2d">@ViewBag.SumCount</span> kết quả</p>
+                <p style="font-weight:600">Tác giả (@ViewBag.countTacgia)</p>
+                <p style="font-weight:600">Album (@ViewBag.countAlbum)</p>
+            </div>
+            <div class="col-lg-10">
+                <h2 style="text-align:center;font-family: 'Yanone Kaffeesatz', sans-serif;">KẾT QUẢ TÌM KIẾM</h2>
+                <h3 style="font-family: 'Yanone Kaffeesatz', sans-serif">ALBUM NHẠC</h3>
+                <div class="row" style="margin-top:10px">
+                    @foreach (var item in Model.Albums)
+                    {
+                        <div class="col-lg-4 col-6" style="padding:5px">
+                            <a href='@Url.Action("ThongTinSanPham", "Home", new { id = item.AlbumID })'>
+                                <table class="item-song-music">
+                                    <tr>
+                                        <th style="width:25%">
+                                            <img alt="image" src="~/Contents/images/album/@item.HinhAnh" style="width:100%;border-radius:10px;" />
+                                        </th>
+                                        <th>
+                                            <div class="newSong__info">
+                                                <div class="newSong__info--title">@item.TenAlbum</div>
+                                                <div class="newSong__info--artist">@item.TacGia.TenTacGia</div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </a>
+                        </div>
+                    }
+                </div>
+
+                <h3 style="font-family: 'Yanone Kaffeesatz', sans-serif;margin-top:20px">Tác giả</h3>
+                <div class="row">
+                    @foreach (var item in Model.TacGias)
+                    {
+                        <div class="col-lg-3 col-4" style="padding:10px">
+                            <a href='@Url.Action("OneArtist", "Home", new { id = item.TacGiaID })'>
+                                <div class="searchArtist card">
+                                    <span class="card-text"><span align="center" style="font-weight:bold;margin-top:10px;color:black">@item.TenTacGia</span></span>
+                                    <i class='fas fa-circle' style="font-size:10px;margin:0 5px"></i>
+                                    <span style="font-weight:bold;margin-top:10px;color:midnightblue">Album(@item.Albums.Count)</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

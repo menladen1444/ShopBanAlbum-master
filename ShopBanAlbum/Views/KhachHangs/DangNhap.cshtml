@@ -1,0 +1,95 @@
+﻿@model ShopBanAlbum.Models.KhachHang
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ĐĂNG NHẬP - THE ALBUM SHOP</title>
+    <link rel="icon" href="~/Contents/images/icon.png" />
+    <link href="~/Contents/css/layout.css" rel="stylesheet" />
+    <link href="~/Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="background-color:#03254c;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6" style="padding:13% 8%">
+                <div style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;border:2px solid white;padding:20px">
+                    <h2 style="font-size:25px;margin-bottom:20px;color:#fdbb2d;font-family: 'Sigmar One', cursive" align="center">ĐĂNG NHẬP</h2>
+                    @using (Html.BeginForm("KiemTraDangNhap", "KhachHangs", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div style="width:100%">
+
+                                <div>
+                                    <p class="lable">Nhập email</p>
+                                    @Html.TextBoxFor(model => model.EmailKhachHang, new { @class = "RegisterInput" })
+                                    <p>@Html.ValidationMessageFor(model => model.EmailKhachHang, "", new { @class = "text-danger" })</p>
+                                    <p class="LoiDangNhap">@ViewBag.email</p>
+                                </div>
+
+                                <div style="margin-top:15px">
+                                    <p class="lable">Nhập mật khẩu</p>
+                                    <div class="input-icons">
+                                        <div align="right" style="padding-right:25px;display:none" id="hide">
+                                            <i class="fas fa-eye-slash icon" onclick="myFunction()"></i>
+                                        </div>
+                                        <div align="right" style="padding-right:25px" id="show">
+                                            <i class="fas fa-eye icon" onclick="myFunction()"></i>
+                                        </div>
+                                        @Html.PasswordFor(model => model.MatKhauKhachHang, new { @class = "RegisterInput", id = "myInput" })
+                                    </div>
+                                    <p>@Html.ValidationMessageFor(model => model.MatKhauKhachHang, "", new { @class = "text-danger" })</p>
+                                    <p class="text-danger">@ViewBag.saidangnhap</p>
+                                </div>
+
+                                    <div style="margin-top:15px">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <p style="color:gray">Bạn chưa có tài khoản?<br><a href="@Url.Action("DangKy", "KhachHangs")" >Đăng ký</a><p>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <input type="submit" class="dangky" style="height:30px;padding:0px 10px;float:right;border:none;color:white" value="Đăng nhập" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                        </div>
+                    }
+                </div>
+                <div align="center"><button class="gohome" onclick="window.location.href='@Url.Action("Index", "Home")'">Trở về trang chủ</button></div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("hide").style.display = 'block';
+            document.getElementById("show").style.display = 'none';
+        } else {
+            x.type = "password";
+            document.getElementById("hide").style.display = 'none';
+            document.getElementById("show").style.display = 'block';
+        }
+    }
+</script>
+</body>
+</html>

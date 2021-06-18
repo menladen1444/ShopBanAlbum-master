@@ -1,0 +1,117 @@
+﻿@model ShopBanAlbum.Models.KhachHang
+
+@{ ViewBag.Title = "THAY ĐỔI MẬT KHẨU";
+    Layout = "~/Views/shared/Layout.cshtml"; }
+
+<div class="container">
+        <div class="row" style="background-color:rgba(0, 0, 0, 0.8);border-radius:30px;font-family: 'Coiny', cursive;padding:20px 40px">
+            <div align="center" style="margin-bottom:30px">
+                <h2 style="color:#ffae00;margin:20px 0;margin-left:10px;font-family: 'Coiny', cursive">THAY ĐỔI MẬT KHẨU</h2>
+            </div>
+            <div class="col-lg-3" align="center">
+            </div>
+            <div class="col-lg-6">
+                <div style="background-color: #0e313c;border-radius:30px;padding:30px">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.KhachHangID)
+
+                            <div style="width:100%">
+                                <div style="margin-top:15px">
+                                    <p class="lable">Nhập mật khẩu hiện tại</p>
+                                    <div class="input-icons">
+                                        <div align="right" style="padding-right:25px;display:none" id="hide">
+                                            <i class="fas fa-eye-slash icon" onclick="myFunction()" style="padding-top:15px"></i>
+                                        </div>
+                                        <div align="right" style="padding-right:25px" id="show">
+                                            <i class="fas fa-eye icon" onclick="myFunction()" style="padding-top:15px"></i>
+                                        </div>
+                                        @Html.Password("MatKhauHienTai", "", new { @class = "RegisterInput", id = "myInput", style = "height:45px" })
+                                    </div>
+                                    <p class="text-danger">@ViewBag.MatKhauHienTaierror</p>
+                                </div>
+
+                                <div style="margin-top:15px">
+                                    <p class="lable">Nhập mật khẩu mới</p>
+                                    <div class="input-icons">
+                                        <div align="right" style="padding-right:25px;display:none" id="hide1">
+                                            <i class="fas fa-eye-slash icon" onclick="myFunction1()" style="padding-top:15px"></i>
+                                        </div>
+                                        <div align="right" style="padding-right:25px" id="show1">
+                                            <i class="fas fa-eye icon" onclick="myFunction1()" style="padding-top:15px"></i>
+                                        </div>
+                                        @Html.Password("MatKhauMoi", "", new { @class = "RegisterInput", id = "myInput", style = "height:45px" })
+                                    </div>
+                                    <p class="text-danger">@ViewBag.MatKhauMoierror</p>
+                                </div>
+
+                                <div style="margin-top:15px">
+                                    <p class="lable">Nhập lại mật khẩu mới</p>
+                                    <div class="input-icons">
+                                        <div align="right" style="padding-right:25px;display:none" id="hide1">
+                                            <i class="fas fa-eye-slash icon" onclick="myFunction1()" style="padding-top:15px"></i>
+                                        </div>
+                                        <div align="right" style="padding-right:25px" id="show1">
+                                            <i class="fas fa-eye icon" onclick="myFunction1()" style="padding-top:15px"></i>
+                                        </div>
+                                        @Html.Password("NhapLaiMatKhauMoi", "", new { @class = "RegisterInput", id = "myInput", style = "height:45px" })
+                                    </div>
+                                    <p class="text-danger">@ViewBag.NhapLaiMatKhauMoierror</p>
+                                    <p style="color:green">@ViewBag.tb</p>
+                                    <p class="text-danger">@ViewBag.error</p>
+                                </div>
+                                <div align="center" style="margin-top:20px">
+                                    <input type="submit" class="dangky" style="padding:10px 20px;border:none;color:rgba(0, 0, 0, 0.8)" value="CẬP NHẬT MẬT KHẨU" />
+                                </div>
+                            </div>
+
+                        </div>}
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-12" align="center" style="padding:10px 0">
+                <button class="gohome" onclick="window.location.href='@Url.Action("Details", "KhachHangs",new { id=Model.KhachHangID})'">Về trang khách hàng</button>
+            </div>
+            @if (ViewBag.capnhatthanhcong != null)
+            {
+                <div class="col-lg-12" align="center" style="padding-top:30px">
+                    <p style="color:lawngreen">@ViewBag.capnhatthanhcong</p>
+                </div>
+            }
+
+        </div>
+    </div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("hide").style.display = 'block';
+            document.getElementById("show").style.display = 'none';
+        } else {
+            x.type = "password";
+            document.getElementById("hide").style.display = 'none';
+            document.getElementById("show").style.display = 'block';
+        }
+    }
+</script>
+<script>
+    function myFunction1() {
+        var x = document.getElementById("myInput1");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("hide1").style.display = 'block';
+            document.getElementById("show1").style.display = 'none';
+        } else {
+            x.type = "password";
+            document.getElementById("hide1").style.display = 'none';
+            document.getElementById("show1").style.display = 'block';
+        }
+    }
+</script>
+
+

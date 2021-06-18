@@ -1,0 +1,100 @@
+﻿@model ShopBanAlbum.Models.KhachHang
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ĐĂNG KÝ - THE ALBUM SHOP</title>
+    <link rel="icon" href="~/Contents/images/icon.png" />
+    <link href="~/Contents/css/layout.css" rel="stylesheet" />
+    <link href="~/Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="background-color:#03254c;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7" align="center" style="font-family: 'Sigmar One', cursive; color: white; margin-top:10%; font-size: 40px">
+                <i class="fas fa-place-of-worship" style="color:white"></i>
+                <p>WELCOME</p>
+                <p>THE ALBUM SHOP</p>
+                <p style=" font-family: 'Sansita Swashed', cursive;">Tạo cho mình một chiếc tài khoản để dể dàng mua hàng nào!</p>
+                <button class="trangchu" onclick="window.location.href='@Url.Action("Index", "Home")'">TRANG CHỦ</button>
+            </div>
+            <div class="col-lg-5" style="padding-top:8%">
+                <div style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;border:2px solid white;padding:20px">
+                    <h2 style="font-size:25px;margin-bottom:20px;color:#fdbb2d;font-family: 'Sigmar One', cursive" align="center">ĐĂNG KÝ TÀI KHOẢN</h2>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div style="width:100%">
+                                <div>
+                                    <p class="lable">What's your name?</p>
+                                    @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "RegisterInput", autocomplete = "off" })
+                                    <p>@Html.ValidationMessageFor(model => model.TenKhachHang, "", new { @class = "text-danger" })</p>
+                                    @*<p class="LoiDangNhap">@ViewBag.username</p>*@
+                                </div>
+
+                                <div>
+                                    <p class="lable">What's your email address?</p>
+                                    @Html.TextBoxFor(model => model.EmailKhachHang, new { @class = "RegisterInput", autocomplete = "off" })
+                                    <p>@Html.ValidationMessageFor(model => model.EmailKhachHang, "", new { @class = "text-danger" })</p>
+                                    <p class="LoiDangNhap">@ViewBag.email</p>
+                                </div>
+
+                                <div>
+                                    <p class="lable">what's your telephone number?</p>
+                                    @Html.TextBoxFor(model => model.SDT, new { @class = "RegisterInput", autocomplete = "off" })
+                                    <p>@Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })</p>
+                                    @*<p class="LoiDangNhap">@ViewBag.username</p>*@
+                                </div>
+
+                                <div style="margin-top:15px">
+                                    <p class="lable">Create a password for the account</p>
+                                    @Html.PasswordFor(model => model.MatKhauKhachHang, new { @class = "RegisterInput" })
+                                    <p>@Html.ValidationMessageFor(model => model.MatKhauKhachHang, "", new { @class = "text-danger" })</p>
+                                </div>
+
+                                <div style="margin-top:15px">
+                                    <p class="lable">Re-enter the password above</p>
+                                    @Html.PasswordFor(model => model.NhapLaiMatKhau, new { @class = "RegisterInput" })
+                                    <p>@ViewBag.nhaplaimatkhau</p>
+                                    <p class="text-danger">@ViewBag.repassword</p>
+                                </div>
+
+                                <div style="margin-top:15px">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <p style="color:gray">Bạn đã có tài khoản? <a href="@Url.Action("DangNhap", "KhachHangs")" >Đăng nhập</a><p>
+                                        </div>
+                                        <div class="col-lg-4" style="padding:0">
+                                            <input type="submit" class="dangky" style="height:30px;padding:0px 10px;float:right;margin-right:12px;border:none;color:white" value="Đăng ký" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            @*<p class="LoiDangNhap">@Html.DisplayFor(model => model.Error)</p>
+                                <p class="LoiDangNhap">@ViewBag.success</p>*@
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

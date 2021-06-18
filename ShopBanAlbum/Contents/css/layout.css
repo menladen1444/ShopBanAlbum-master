@@ -1,0 +1,794 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #57bfe0;
+}
+
+.page {
+    padding-bottom: 30px
+}
+
+.logo {
+    background-color: #002dae;
+    border-radius: 30%;
+    color: #ff6000;
+    padding: 4px 6px;
+    padding-right: 0px;
+    font-size: 24px;
+    border: 2px solid #04222c;
+}
+.input-icons i {
+    position: absolute;
+}
+.icon {    
+    padding-top:8px;
+
+} 
+.RegisterInput {
+    width: 400px;
+    height: 25px;
+    font-family: 'Anton', sans-serif;
+    padding-left: 5px
+}
+
+.navbar-brand {
+    padding-left: 0px
+}
+
+.name {
+    font-family: 'Alfa Slab One', cursive
+}
+
+.price {
+    font-family: 'Coiny', cursive;
+    font-size: 20px;
+}
+
+.brand {
+    font-family: 'Fredoka One', cursive;
+    font-size: 28px;
+    margin-left: 5px;
+    color: #2b58d9;
+    text-shadow: 2px 2px black;
+}
+
+.buttonBuy {
+    color: #1c5a6e;
+    background-color: #bde0ea;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 2px solid #0f529b
+}
+
+.buttonaddcard {
+    color: black;
+    background-color: #1c5a6e;
+    padding: 7px 20px;
+    border-radius: 5px;
+}
+
+.LoiDangNhap{
+    color:yellow;
+}
+
+.menu {
+    text-align: center;
+    padding: 0px 0;
+    color: white
+}
+
+    .menu:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        color: white
+    }
+
+.navbar-nav > .open > a:hover {
+    background-color: transparent
+}
+
+.navbar-inverse {
+    background-color: transparent;
+    padding: 10px 0;
+    color: white
+}
+
+.navbar-toggle {
+    background-color: cornflowerblue;
+    border-radius: 8px;
+    border: 2px solid blue;
+    margin-right: 0px
+}
+
+.dropdown-menu {
+    background-color: #185365;
+    border: 2px solid #061f27;
+}
+    .dropdown-menu > li > a {
+        color:lightgrey;
+    }
+.dangky {
+    background-color: #fd9a24;
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1)
+}
+
+    .dangky:hover {
+        background-color: #fbb124;
+    }
+
+.dangnhap {
+    background-color: #1ed760;
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1)
+}
+
+    .dangnhap:hover {
+        background-color: #08f26e;
+    }
+
+.trangchu {
+    background-color: white;
+    border-radius: 30px;
+    color: #202c53;
+    font-size: 20px;
+    padding: 15px 20px;
+}
+
+    .trangchu:hover {
+        background-color: orange;
+        font-size: 21px
+    }
+
+body {
+    color: #444;
+    font-family: Helvetica, sans-serif;
+    margin: 0;
+    background: #ECECEC
+}
+
+button {
+    margin-top: 10px
+}
+
+ul {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none
+}
+
+p {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+a {
+    -webkit-transition: color 0.25s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    -moz-transition: color 0.25s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    -o-transition: color 0.25s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    transition: color 0.25s cubic-bezier(0.860, 0.000, 0.070, 1.000); /* ease-in-out */
+}
+
+button {
+    color: #FFF;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    background: #c48ec8;
+    padding: 8px 14px
+}
+
+ul.animate {
+    -webkit-transition: -webkit-transform 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    -moz-transition: transform 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    -o-transition: transform 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    transition: transform 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000); /* ease-in-out */
+}
+
+.stage {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 12%;
+    text-align: center;
+    overflow: hidden
+}
+
+.sldr {
+    max-width: 825px;
+    margin: 0 auto;
+    overflow: visible;
+    position: relative;
+    clear: both;
+    display: block
+}
+
+    .sldr > ul > li {
+        float: left;
+        display: block;
+        width: 825px
+    }
+
+div.skew {
+    max-width: 825px;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    -webkit-transform: skewX(16deg);
+    -moz-transform: skewX(16deg);
+    -ms-transform: skewX(16deg);
+    transform: skewX(16deg)
+}
+
+    div.skew > div.wrap {
+        display: block;
+        overflow: hidden;
+        -webkit-transform: skewX(-16deg);
+        -moz-transform: skewX(-16deg);
+        -ms-transform: skewX(-16deg);
+        transform: skewX(-16deg);
+        margin-left: -10.1%;
+        width: 122%
+    }
+
+img {
+    max-width: 1000px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto
+}
+
+.selectors {
+    /*margin: 15px 0 0;*/
+}
+
+    .selectors li {
+        font-size: 46px;
+        line-height: 32px;
+        display: inline;
+        padding: 0 2px
+    }
+
+        .selectors li a {
+            text-decoration: none
+        }
+
+        .selectors li.focalPoint a {
+            color: #CCC;
+            cursor: default
+        }
+
+.captions div {
+    left: 200%;
+    position: fixed;
+    opacity: 0;
+    -webkit-transition: opacity 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    -moz-transition: opacity 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    -o-transition: opacity 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    transition: opacity 0.75s cubic-bezier(0.860, 0.000, 0.070, 1.000); /* ease-in-out */
+}
+
+    .captions div.focalPoint {
+        opacity: 1;
+        left: inherit;
+        position: static;
+    }
+
+.lable {
+    color: #d0efff;
+}
+
+.gohome {
+    background: none;
+    color: #adcbee;
+    margin-top: 10px
+}
+
+    .gohome:hover {
+        color: white
+    }
+
+.RegisterInput {
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    width: 100%;
+}
+
+.clear {
+    display: block;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    clear: both;
+}
+
+
+/* ==== footer ==== */
+
+footer {
+    padding: 30px 0;
+    padding-top: 0px;
+}
+
+
+/* ==== Search ==== */
+
+.searchArtist {
+    background-color: aliceblue;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+.search__title {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    color: dimgrey;
+}
+
+.search__input {
+    font-family: 'Sansita Swashed', cursive;
+    width: 100%;
+    padding: 12px 24px;
+    transition: transform 250ms ease-in-out;
+    font-size: 14px;
+    line-height: 18px;
+    color: dimgrey;
+    background-color: powderblue;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
+    border-radius: 50px;
+    border: 1px solid #575756;
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+}
+
+    .search__input:hover,
+    .search__input:focus {
+        padding: 12px 10px;
+        outline: 0;
+        border: 1px solid #575756;
+        border-radius: 10px;
+        background-position: 98% center;
+    }
+
+.nameslider {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bolder;
+    font-family: 'Fredoka One', cursive;
+    background-color: #113a63;
+    padding: 5px;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.cart {
+    background-color: #113a63;
+    border-radius: 25px;
+    padding:13px 5px;
+    margin-top: 10px;
+}
+.cart1 {
+    padding: 8px 6px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.7)
+}
+    .cart1:hover {
+        background-color: #0b2542;
+    }
+.cartnumber {
+    font-family: 'Fredoka One', cursive;
+    padding: 3px 10px;
+    margin-left: 15px;
+    background-color: #e2d037;
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.sanphamnoibat {
+    padding: 20px 10px;
+}
+
+.link {
+    text-decoration: none;
+    color: lightgrey;
+}
+
+    .link:hover {
+        text-decoration: none;
+        color: darkslateblue;        
+        border: 1px solid gray;
+    }
+
+.item-song-music {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #fdbb2d;
+    border-radius: 40px;
+}
+
+    .item-song-music:hover {
+        width: 100%;
+        margin-top: 20px;
+        background-image: linear-gradient(to right, #db36a4, transparent);
+        border-radius: 40px
+    }
+
+.newSong__info {
+    margin-left: 15px;
+}
+
+.newSong__info--title {
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.newSong__info--artist {
+    color: #37474f;
+    font-size: 13px;
+}
+
+.linkBaiHat {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    border-radius: 15px
+}
+
+    .linkBaiHat:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+.lienheinput {
+    border-radius: 10px;
+    width: 100%;
+    border: 2px solid #154e60;
+    height: 55px;
+    padding: 0 10px;
+    font-family: 'Coiny', cursive;
+    background-color: #bbdae4;
+}
+
+.noidung {
+    border-radius: 10px;
+    width: 100%;
+    border: 2px solid #154e60;
+    height: 120px;
+    padding: 5px 10px;
+    font-family: 'Coiny', cursive;
+    background-color: #bbdae4;
+}
+.ButtonChinhSuaThongTin {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 12px;
+    color:white;
+    font-family: 'Coiny', cursive;
+    border: 2px solid white;
+}
+    .ButtonChinhSuaThongTin:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        color:lightskyblue
+    }
+.ButtonThayDoiMatKhau {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 15px;
+    color: #fccf7c;
+    font-family: 'Coiny', cursive;
+    border: 2px solid #fccf7c;
+}
+    .ButtonThayDoiMatKhau:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+.huy {
+    padding: 10px 15px;
+    border-radius: 6px;
+    background-color: #f03825;
+    margin-right: 0
+}
+    .huy:hover {
+        background-color: #dd1c08;
+    }
+.datlai {
+    padding: 10px 15px;
+    border-radius: 6px;
+    background-color: #fca204;
+    margin-right: 0
+}
+
+    .datlai:hover {
+        background-color: #cc8405;
+    }
+.ButtonDonHang {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 15px;
+    color: orange;
+    font-family: 'Coiny', cursive;
+    border: 2px solid orange;
+}
+
+    .ButtonDonHang:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+.heart {
+    color: rgba(0, 0, 0, 0.1);
+    font-size: 40px;
+    float: right
+}
+.heart:hover{
+    color:deeppink;
+    opacity:0.5;
+}
+.hearttrue {
+    color: deeppink;
+    font-size: 40px;
+    float: right
+}
+
+    .hearttrue:hover {
+        opacity: 0.5;
+    }
+.submit {
+    background: none;
+    border: none;
+    font-family: 'Coiny', cursive;
+    color: #051a21;
+    font-size: 25px;
+    float: right;
+    margin: 10px 0;
+    border-bottom: 4px solid #051a21;
+    padding: 0
+}
+    .submit:hover {
+        color: #ffae00;
+        border-bottom: 4px solid #ffae00;
+    }
+.chatTitleContainer {
+    text-align: left;
+    font-size: 14pt;
+    vertical-align: middle;
+    display: table-cell;
+    height: 50px;
+    width: 100%;
+    font-family: Expert-Sans-Regular, verdana, Arial, helvetica, sans-serif;
+    color: #b5b5b5;
+}
+.buttonbinhluan {
+    background-color: #23383e;
+    border-radius: 5px;
+    font-size:8px;
+    width:100%;
+}
+.chatHistoryContainer {
+    padding: 20px;
+    height: 200px;
+    width: 100%;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+.formComments {
+    list-style-type: none;
+    overflow-y: scroll;
+    height: 100%;
+    padding-bottom: 60px;
+    padding-left: 0px;
+}
+
+    .formComments li {
+        margin-bottom: 10px;
+    }
+.button-trangthai{
+    background:none;
+    border:none;
+    color:aliceblue;
+    padding:0 15px
+}
+.button-phanloai-active {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: aliceblue;
+    border: none
+}
+.button-phanloai {
+    background-color: transparent;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color:aliceblue;
+    border:none
+}
+    .button-phanloai:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+.LuuDanhGia {
+    border-radius: 5px;
+    border: 2px solid #4a96ae;
+    background-color: transparent;
+    color: #4a96ae;
+}
+    .LuuDanhGia:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+.DiemTichLuy {
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+    background-color: #0e313c;
+    border-radius: 50%;
+    height: 190px;
+    width: 190px;
+    font-size: 40px;
+    color: #f89720;
+    border: 2px solid #f89720;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Jaldi:400,700);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic,900);
+
+
+/* -------------------------------------------------------------------------------------------
+	ITEM DEMO -  SHOULD REQUIRE
+---------------------------------------------------------------------------------------------- */
+
+div.stars {
+    display: inline-block;
+}
+
+input.star {
+    display: none;
+}
+
+label.star {
+    float: right;
+    padding: 10px;
+    font-size: 25px;
+    color: #444;
+    transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: #FD4;
+    transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+    color: #FE7;
+    text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before {
+    color: #F62;
+}
+
+label.star:hover {
+    transform: rotate(-15deg) scale(1.3);
+}
+
+label.star:before {
+    content: '\f006';
+    font-family: FontAwesome;
+}
+
+/*thông báo*/
+
+.notification {
+    position: relative;
+}
+
+    .notification svg {
+        width: 26px;
+        height: 26px;
+    }
+
+        .notification svg > path {
+            fill: #FFFFFF;
+        }
+
+.notification--bell {
+    animation: bell 2.2s linear infinite;
+    transform-origin: 50% 0%;
+}
+
+main .notification--bellClapper {
+    animation: bellClapper 2.2s 0.1s linear infinite;
+}
+
+.notification--num {
+    position: absolute;
+    top: 0%;
+    left: 60%;
+    font-size: 2.25rem;
+    border-radius: 50%;
+    width: 12px;
+    height:12px;
+    background-color: #FF4C13;
+    border: 2px solid #5079b1;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 1.7em;
+    animation: notification 3.2s ease;
+}
+
+@keyframes bell {
+    0%, 25%, 75%, 100% {
+        transform: rotate(0deg);
+    }
+
+    40% {
+        transform: rotate(2deg);
+    }
+
+    45% {
+        transform: rotate(-2deg);
+    }
+
+    55% {
+        transform: rotate(1deg);
+    }
+
+    60% {
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes bellClapper {
+    0%, 25%, 75%, 100% {
+        transform: translateX(0);
+    }
+
+    40% {
+        transform: translateX(-0.15em);
+    }
+
+    45% {
+        transform: translateX(0.15em);
+    }
+
+    55% {
+        transform: translateX(-0.1em);
+    }
+
+    60% {
+        transform: translateX(0.1em);
+    }
+}
+
+@keyframes notification {
+    0%, 25%, 75%, 100% {
+        opacity: 1;
+    }
+
+    30%, 70% {
+        opacity: 0;
+    }
+}
+

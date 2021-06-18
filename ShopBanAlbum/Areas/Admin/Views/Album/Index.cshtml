@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@section Styles{
+    <!-- Custom fonts for this template-->
+    <link href="/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+}
+@section Scripts{
+    <!-- Bootstrap core JavaScript-->
+    <script src="/Assets/Admin/vendor/jquery/jquery.min.js"></script>
+    <script src="/Assets/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/Assets/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/Assets/Admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/Assets/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/Assets/Admin/js/demo/datatables-demo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-flex justify-content-between pb-2">
+        <h1 class="h3 mb-2 text-gray-800">Danh sách Album</h1>
+        <div>
+            <a type="submit" class="btn btn-success" href="@Url.Action("Create","Album")">
+                <i class="fas fa-plus"></i>
+                <span>Thêm Album</span>
+            </a>
+        </div>
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="albumDataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>AlbumID</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên Album</th>
+                            <th>Giá bán</th>
+                            <th>Ngày phát hành</th>
+                            <th>Số lượng tồn kho</th>
+                            <th>Đã bán</th>
+                            <th>Xuất xứ</th>
+                            <th>Phụ kiện</th>
+                            <th>Thể loại</th>
+                            <th>Tác giả</th>
+                            <th>Quốc gia</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>AlbumID</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên Album</th>
+                            <th>Giá bán</th>
+                            <th>Ngày phát hành</th>
+                            <th>Số lượng tồn kho</th>
+                            <th>Đã bán</th>
+                            <th>Xuất xứ</th>
+                            <th>Phụ kiện</th>
+                            <th>Thể loại</th>
+                            <th>Tác giả</th>
+                            <th>Quốc gia</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<script>
+function DeleteData(AlbumID) {
+    if (confirm("Bạn chắc chắn muốn xóa Album này ...?")) {
+        Delete(AlbumID);
+    }
+    else {
+        return false;
+    }
+}
+
+function Delete(AlbumID) {
+var url = '@Url.Content("Album/DeleteAlbum")';
+$.post(url, { ID: AlbumID }, function (data) {
+        if (data == "Deleted") {
+            alert("Xóa thành công!");
+            oTable = $('#albumDataTable').DataTable();
+            oTable.draw();
+        }
+        else {
+            alert("Something Went Wrong!");
+        }
+    });
+}
+</script>

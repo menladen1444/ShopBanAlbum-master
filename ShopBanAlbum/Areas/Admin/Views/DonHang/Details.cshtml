@@ -1,0 +1,100 @@
+﻿@model ShopBanAlbum.Models.DonHang
+
+@{
+    ViewBag.Title = "Details";
+}
+@section Styles{
+   
+    <!-- Page level plugins -->
+    <script src="/Assets/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/Assets/Admin/js/demo/datatables-demo.js"></script>
+}
+
+
+<div class="container">
+    <div class="mt-3">
+        <h2 style="color:#000000;margin:20px 0;margin-left:10px">CHI TIẾT ĐƠN HÀNG</h2>
+        <div class="row mr-3" style="background-color:rgba(0, 0, 0, 0.3);border-radius:30px;padding:50px 40px">
+            <div class="col-lg-12" style="margin-bottom:10px">
+                <span style="background-color:rgba(0, 0, 0, 0.3);padding:8px 20px;border-radius:15px;color:white">Mã đơn hàng <span style="color:lightblue">#@Model.DonHangID</span></span>
+            </div>
+
+            <div class="col-lg-6" style="color:dimgrey">
+                <h3 style="margin-top:0px;margin-bottom:20px;color:#4f535b">Thông tin giao hàng</h3>
+                <h3>Khách hàng: @Model.TenKhachHang</h3>
+                <h4>Số điện thoại: @Model.SoDienThoai</h4>
+                <h4>Địa chỉ: @Model.DiaChi</h4>
+                <h4>Hình thức thanh toán: @Model.HinhThucThanhToan.TenHinhThucThanhToan</h4>
+            </div>
+            <div class="col-lg-6 ">
+                <h3 style="margin-top:0px;margin-bottom:20px;color:#4f535b">Đơn hàng</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h4 style="color:#5c616a">Sản phẩm</h4>
+                    </div>
+                    <div class="col-lg-3" align="right">
+                        <h4 style="color:#5c616a">Đơn giá</h4>
+                    </div>
+                    @foreach (var item in Model.ChiTietDonHangs)
+                    {
+                        double total = Convert.ToDouble(item.Album.GiaBan * item.SoLuong);
+                        <div class="col-lg-2">
+                            <img alt="image" src="~/Contents/images/album/@item.Album.HinhAnh" style="width:35px;border-radius:5px;float:left">
+                        </div>
+                        <div class="col-lg-7">
+                            <p style="color:#354159;padding-bottom:0;margin-bottom:0">@item.Album.TenAlbum <span class="font-weight-bold">x @item.SoLuong</span></p>
+                        </div>
+                        <div class="col-lg-3" align="right">
+                            <p style="color:#eff293">@total.ToString("N0")đ</p>
+                        </div>
+                    }
+                </div>
+                <div class="row" style="background-color:rgba(0, 0, 0, 0.2);padding:10px 0;margin-top:20px;border-radius:10px">
+                    <div class="col-lg-8">
+                        <h4 style="color:#4f535b">Tổng cộng đơn hàng</h4>
+                    </div>
+                    <div class="col-4" align="right" style="padding-right:20px">
+                        <h4 style="color:#eef456">@Model.TongTien.ToString("N0")đ</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top:20px;padding:0 20px" align="right">
+        @if (ViewBag.tt == 4)
+        {
+            <h3 style="color:green">Đơn hàng đã giao hoàn thành</h3>
+        }
+        else if (ViewBag.tt == 5)
+        {
+            <h3 style="color:red">Đơn hàng đã giao không hoàn thành</h3>
+        }
+        else if (ViewBag.tt == 6)
+        {
+            <h3 style="color:red">Đơn hàng đã được hủy</h3>
+        }
+        else
+        {
+            using (Html.BeginForm())
+            {
+                <div class="form-group d-flex justify-content-end">
+                    <div>
+                        <label class="control-label p-2 m-0">Trạng thái đơn hàng: </label>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownList("TrangThaiDonHangID", null, htmlAttributes: new { @class = "form-control p-2 m-0" })
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input class="btn btn-success" type="submit" value="Cập nhật" />
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
